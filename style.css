@@ -6,7 +6,13 @@
   --text-light: #ffffff;
   --primary-btn: #8c7355;
   --primary-btn-hover: #9c8365;
-  --badge-bg: rgba(0, 0, 0, 0.7);
+  --badge-bg: rgba(0, 0, 0, 0.75);
+}
+
+html, body {
+  overscroll-behavior-y: none;
+  overscroll-behavior: none;
+  touch-action: none;
 }
 
 * {
@@ -15,13 +21,6 @@
   padding: 0;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-html, body {
-  overscroll-behavior-y: none;
-  overscroll-behavior: none;
-  touch-action: none;
 }
 
 body {
@@ -51,7 +50,7 @@ body {
 }
 
 .title-container h1 {
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: 800;
   line-height: 1;
   color: var(--text-dark);
@@ -162,8 +161,8 @@ body {
 }
 
 .guide-item img {
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   border-radius: 6px;
   object-fit: contain;
   background: #faf8ef;
@@ -212,7 +211,7 @@ body {
   border-radius: 8px;
 }
 
-/* Peças com Memes */
+/* Peças com Filhotinhos de Meme */
 .tile-container {
   position: absolute;
   top: 12px;
@@ -234,9 +233,8 @@ body {
   transition: transform 100ms ease-in-out;
   box-shadow: 0 3px 6px rgba(0,0,0,0.18);
   overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  padding: 4px;
-  background-color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background-color: #faf6f0;
 }
 
 .tile-img {
@@ -246,14 +244,21 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background-color: #faf6f0;
+  background-color: #fdfaf6;
   z-index: 1;
 }
 
-.tile-badge {
+/* Header superior da peça (Valor numérico) */
+.tile-header {
   position: relative;
   z-index: 2;
-  align-self: flex-end;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 3px 4px 0 0;
+}
+
+.tile-badge {
   background: var(--badge-bg);
   color: #fff;
   font-size: 0.72rem;
@@ -264,27 +269,37 @@ body {
   text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }
 
-.tile-name {
+/* Legenda inferior estilo Sticker de WhatsApp */
+.tile-caption {
   position: relative;
   z-index: 2;
   width: 100%;
-  font-size: 0.62rem;
-  font-weight: 800;
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
   text-align: center;
+  padding: 3px 2px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 80%, transparent 100%);
+}
+
+.tile-caption span {
+  font-family: "Impact", "Arial Black", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px #000, -1px -1px 2px #000, 1px -1px 2px #000, -1px 1px 2px #000;
+  display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  background: rgba(0, 0, 0, 0.55);
-  border-radius: 4px;
-  padding: 1px 2px;
 }
 
-/* Cores de borda/brilho por nível */
+/* Efeito Dourado Especial para o 2048 */
 .tile-2048 {
   border-color: #ffd700;
-  box-shadow: 0 0 18px 3px rgba(255, 215, 0, 0.85);
+  box-shadow: 0 0 18px 4px rgba(255, 215, 0, 0.9);
+}
+
+.tile-2048 .tile-caption span {
+  color: #ffe600;
 }
 
 /* Animações */
@@ -398,7 +413,7 @@ body {
     display: flex;
   }
   .title-container h1 {
-    font-size: 2.4rem;
+    font-size: 2.3rem;
   }
 }
 

@@ -1,23 +1,23 @@
-// Lista completa dos Memes de Cachorro
-const DOG_MEMES = {
-  2:    { name: "Oi posso fala?", img: "assets/dogs/meme-1.png" },
-  4:    { name: "Cheems Triste", img: "assets/dogs/meme-2.png" },
-  8:    { name: "Dog Julgador", img: "assets/dogs/meme-3.png" },
-  16:   { name: "Caramelo Chocado", img: "assets/dogs/meme-4.png" },
-  32:   { name: "Sorriso Forçado", img: "assets/dogs/meme-5.png" },
-  64:   { name: "Walter", img: "assets/dogs/meme-6.png" },
-  128:  { name: "Cão de Óculos", img: "assets/dogs/meme-7.png" },
-  256:  { name: "Dog Reflexivo", img: "assets/dogs/meme-8.png" },
-  512:  { name: "Desconfiado", img: "assets/dogs/meme-9.png" },
-  1024: { name: "Vira-lata Caramelo", img: "assets/dogs/meme-10.png" },
-  2048: { name: "Doge Lendário", img: "assets/dogs/meme-11.png" }
+// Lista dos Memes de Filhotes de Cachorro (Figurinhas clássicas)
+const PUPPY_MEMES = {
+  2:    { name: "Oi posso fala?",  img: "assets/dogs/filhote-1.png" },
+  4:    { name: "Num quedito...",  img: "assets/dogs/filhote-2.png" },
+  8:    { name: "Quem disse?",     img: "assets/dogs/filhote-3.png" },
+  16:   { name: "Tô de castigo",   img: "assets/dogs/filhote-4.png" },
+  32:   { name: "Mim dê papai",    img: "assets/dogs/filhote-5.png" },
+  64:   { name: "Passada!",        img: "assets/dogs/filhote-6.png" },
+  128:  { name: "Cão de Óculos",   img: "assets/dogs/filhote-7.png" },
+  256:  { name: "Penso, logo au",  img: "assets/dogs/filhote-8.png" },
+  512:  { name: "Hummm sei não",   img: "assets/dogs/filhote-9.png" },
+  1024: { name: "Caramelo Neném",  img: "assets/dogs/filhote-10.png" },
+  2048: { name: "Doge Lendário",   img: "assets/dogs/filhote-11.png" }
 };
 
 // Estado do Jogo
 const SIZE = 4;
 let board = [];
 let score = 0;
-let bestScore = parseInt(localStorage.getItem('2048_dogmeme_best') || '0', 10);
+let bestScore = parseInt(localStorage.getItem('2048_puppymeme_best') || '0', 10);
 let hasWon = false;
 let keepPlaying = false;
 let isGameOver = false;
@@ -46,8 +46,8 @@ function init() {
 function renderGuide() {
   if (!guideList) return;
   guideList.innerHTML = '';
-  Object.keys(DOG_MEMES).forEach(val => {
-    const meme = DOG_MEMES[val];
+  Object.keys(PUPPY_MEMES).forEach(val => {
+    const meme = PUPPY_MEMES[val];
     const item = document.createElement('div');
     item.className = 'guide-item';
     item.innerHTML = `
@@ -81,7 +81,7 @@ function updateScore(pointsAdded) {
   if (score > bestScore) {
     bestScore = score;
     bestScoreDisplay.textContent = bestScore;
-    localStorage.setItem('2048_dogmeme_best', bestScore);
+    localStorage.setItem('2048_puppymeme_best', bestScore);
   }
 }
 
@@ -118,7 +118,7 @@ function renderBoard(newTileCoord = null, mergedCoords = []) {
           tile.classList.add('tile-2048');
         }
 
-        const meme = DOG_MEMES[val] || { name: `Meme ${val}`, img: DOG_MEMES[2048].img };
+        const meme = PUPPY_MEMES[val] || { name: `Filhote ${val}`, img: PUPPY_MEMES[2048].img };
 
         if (newTileCoord && newTileCoord.r === r && newTileCoord.c === c) {
           tile.classList.add('tile-new');
@@ -128,8 +128,12 @@ function renderBoard(newTileCoord = null, mergedCoords = []) {
 
         tile.innerHTML = `
           <img class="tile-img" src="${meme.img}" alt="${meme.name}" />
-          <span class="tile-badge">${val}</span>
-          <span class="tile-name">${meme.name}</span>
+          <div class="tile-header">
+            <span class="tile-badge">${val}</span>
+          </div>
+          <div class="tile-caption">
+            <span>${meme.name}</span>
+          </div>
         `;
         
         // Posição percentual considerando o gap de 12px
@@ -270,12 +274,11 @@ function setupEventListeners() {
     }
   });
 
-  // Touch / Gestos de deslize (Swipe)
+  // Touch / Gestos de deslize (Swipe) com bloqueio anti pull-to-refresh
   let touchStartX = 0;
   let touchStartY = 0;
   const gameBoard = document.getElementById('game-board');
 
-  // Previne pull-to-refresh e scroll padrão da página ao tocar no tabuleiro
   gameBoard.addEventListener('touchstart', (e) => {
     if (e.touches.length === 1) {
       touchStartX = e.touches[0].clientX;
@@ -284,8 +287,7 @@ function setupEventListeners() {
   }, { passive: false });
 
   gameBoard.addEventListener('touchmove', (e) => {
-    // Cancela o gesto nativo do navegador (recarregar página / scroll)
-    e.preventDefault();
+    e.preventDefault(); // Previne recarregar a página
   }, { passive: false });
 
   gameBoard.addEventListener('touchend', (e) => {
