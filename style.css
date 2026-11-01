@@ -9,12 +9,14 @@
   --badge-bg: rgba(99, 38, 74, 0.85);
   --accent-pink: #ff758f;
   --subtext: #8c4868;
+  --grid-padding: 12px;
+  --grid-gap: 12px;
 }
 
 html, body {
   overscroll-behavior-y: none;
   overscroll-behavior: none;
-  touch-action: none;
+  touch-action: pan-x pan-y;
 }
 
 * {
@@ -38,15 +40,19 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 16px;
+  min-height: 100dvh;
+  padding: 12px 16px 20px 16px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .container {
   width: 100%;
-  max-width: 480px;
+  max-width: 460px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
+  margin: auto;
 }
 
 /* Cabeçalho */
@@ -211,11 +217,11 @@ body {
   height: 100%;
   background: var(--grid-bg);
   border-radius: 14px;
-  padding: 12px;
+  padding: var(--grid-padding);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 12px;
+  gap: var(--grid-gap);
   box-shadow: inset 0 2px 8px rgba(180, 80, 110, 0.25), 0 4px 15px rgba(243, 176, 195, 0.35);
   border: 2px solid rgba(255, 255, 255, 0.7);
 }
@@ -228,17 +234,17 @@ body {
 /* Peças com Filhotinhos de Meme */
 .tile-container {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
+  top: var(--grid-padding);
+  left: var(--grid-padding);
+  right: var(--grid-padding);
+  bottom: var(--grid-padding);
   pointer-events: none;
 }
 
 .tile {
   position: absolute;
-  width: calc((100% - 36px) / 4);
-  height: calc((100% - 36px) / 4);
+  width: calc((100% - (3 * var(--grid-gap))) / 4);
+  height: calc((100% - (3 * var(--grid-gap))) / 4);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -384,8 +390,78 @@ body {
 }
 
 @media (max-width: 600px) {
+  :root {
+    --grid-padding: 8px;
+    --grid-gap: 8px;
+  }
+
+  body {
+    padding: 8px 12px 16px 12px;
+    align-items: flex-start;
+  }
+
+  .container {
+    gap: 8px;
+    max-width: 100%;
+  }
+
   .title-container h1 {
-    font-size: 2.3rem;
+    font-size: 1.85rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    margin-top: 2px;
+  }
+
+  .score-box {
+    padding: 5px 10px;
+    min-width: 60px;
+  }
+
+  .score-box .label {
+    font-size: 0.65rem;
+  }
+
+  .score-box .value {
+    font-size: 1.15rem;
+  }
+
+  .btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .instructions {
+    font-size: 0.75rem;
+  }
+
+  .dog-guide {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .grid-container {
+    border-radius: 10px;
+  }
+
+  .tile {
+    border-radius: 6px;
+  }
+
+  .tile-badge {
+    font-size: 0.65rem;
+    padding: 1px 4px;
+  }
+
+  .tile-caption span {
+    font-size: 0.65rem;
+  }
+
+  .footer {
+    font-size: 0.75rem;
+    margin-top: 2px;
+    padding-bottom: 8px;
   }
 }
 

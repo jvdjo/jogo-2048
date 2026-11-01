@@ -136,8 +136,8 @@ function renderBoard(newTileCoord = null, mergedCoords = []) {
         `;
         
         // Posição percentual considerando o gap de 12px
-        tile.style.top = `calc(${r} * (25% + 3px))`;
-        tile.style.left = `calc(${c} * (25% + 3px))`;
+        tile.style.top = `calc(${r} * (25% + (var(--grid-gap) / 4)))`;
+        tile.style.left = `calc(${c} * (25% + (var(--grid-gap) / 4)))`;
 
         tileContainer.appendChild(tile);
       }
