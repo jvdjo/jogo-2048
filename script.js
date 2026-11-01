@@ -32,7 +32,6 @@ const restartBtn = document.getElementById('restart-btn');
 const retryBtn = document.getElementById('retry-btn');
 const winRestartBtn = document.getElementById('win-restart-btn');
 const keepGoingBtn = document.getElementById('keep-going-btn');
-const dPadButtons = document.querySelectorAll('.d-btn');
 const guideList = document.getElementById('guide-list');
 
 // Inicialização
@@ -315,13 +314,6 @@ function setupEventListeners() {
   keepGoingBtn.addEventListener('click', () => {
     keepPlaying = true;
     winOverlay.classList.add('hidden');
-  });
-
-  dPadButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const dir = btn.dataset.dir;
-      if (dir) move(dir);
-    });
   });
 }
 
