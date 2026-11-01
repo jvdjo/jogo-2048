@@ -270,22 +270,29 @@ function setupEventListeners() {
     }
   });
 
+  // Touch / Gestos de deslize (Swipe)
   let touchStartX = 0;
   let touchStartY = 0;
   const gameBoard = document.getElementById('game-board');
 
+  // Previne pull-to-refresh e scroll padrão da página ao tocar no tabuleiro
   gameBoard.addEventListener('touchstart', (e) => {
     if (e.touches.length === 1) {
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
     }
-  }, { passive: true });
+  }, { passive: false });
+
+  gameBoard.addEventListener('touchmove', (e) => {
+    // Cancela o gesto nativo do navegador (recarregar página / scroll)
+    e.preventDefault();
+  }, { passive: false });
 
   gameBoard.addEventListener('touchend', (e) => {
     if (e.changedTouches.length === 1) {
       const deltaX = e.changedTouches[0].clientX - touchStartX;
       const deltaY = e.changedTouches[0].clientY - touchStartY;
-      const minSwipeDistance = 30;
+      const minSwipeDistance = 25;
 
       if (Math.abs(deltaX) > Math.abs(deltaY)) {
         if (Math.abs(deltaX) > minSwipeDistance) {
@@ -297,7 +304,7 @@ function setupEventListeners() {
         }
       }
     }
-  }, { passive: true });
+  }, { passive: false });
 
   restartBtn.addEventListener('click', restartGame);
   retryBtn.addEventListener('click', restartGame);

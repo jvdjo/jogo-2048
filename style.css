@@ -18,6 +18,12 @@
   touch-action: manipulation;
 }
 
+html, body {
+  overscroll-behavior-y: none;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 body {
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   background-color: var(--bg-color);
@@ -184,6 +190,7 @@ body {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
+  touch-action: none;
 }
 
 .grid-container {
