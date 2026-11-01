@@ -96,7 +96,7 @@ function renderGuide() {
   Object.keys(PUPPY_MEMES).forEach(val => {
     const meme = PUPPY_MEMES[val];
     const item = document.createElement('div');
-    item.className = 'guide-item';
+    item.className = 'guide-item guide-val-' + val;
     item.innerHTML = `
       <img src="${meme.img}" alt="${meme.name}" />
       <span class="guide-num">${val}</span>
@@ -160,7 +160,7 @@ function renderBoard(newTileCoord = null, mergedCoords = []) {
       const val = board[r][c];
       if (val > 0) {
         const tile = document.createElement('div');
-        tile.className = 'tile';
+        tile.className = 'tile tile-val-' + val;
         if (val >= 2048) {
           tile.classList.add('tile-2048');
         }

@@ -272,9 +272,35 @@ body {
   transition: transform 100ms ease-in-out;
   box-shadow: 0 3px 6px rgba(0,0,0,0.18);
   overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.7);
+  border: 3.5px solid #ffffff;
   background-color: #faf6f0;
 }
+
+/* Cores de borda para cada evolução do filhote (do Branco ao Vermelho) */
+.tile-val-2    { border-color: #ffffff; }
+.tile-val-4    { border-color: #38bdf8; }
+.tile-val-8    { border-color: #2563eb; }
+.tile-val-16   { border-color: #10b981; }
+.tile-val-32   { border-color: #16a34a; }
+.tile-val-64   { border-color: #a855f7; }
+.tile-val-128  { border-color: #7c3aed; }
+.tile-val-256  { border-color: #facc15; }
+.tile-val-512  { border-color: #fb923c; }
+.tile-val-1024 { border-color: #f97316; }
+.tile-val-2048 { border-color: #ef4444; }
+
+/* Bordas correspondentes no guia de evolução */
+.guide-val-2   { border: 2.5px solid #ffffff; }
+.guide-val-4   { border: 2.5px solid #38bdf8; }
+.guide-val-8   { border: 2.5px solid #2563eb; }
+.guide-val-16  { border: 2.5px solid #10b981; }
+.guide-val-32  { border: 2.5px solid #16a34a; }
+.guide-val-64  { border: 2.5px solid #a855f7; }
+.guide-val-128 { border: 2.5px solid #7c3aed; }
+.guide-val-256 { border: 2.5px solid #facc15; }
+.guide-val-512 { border: 2.5px solid #fb923c; }
+.guide-val-1024{ border: 2.5px solid #f97316; }
+.guide-val-2048{ border: 2.5px solid #ef4444; }
 
 .tile-img {
   position: absolute;
