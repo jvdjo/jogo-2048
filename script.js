@@ -1,48 +1,14 @@
-﻿// Audio Context e efeito sonoro de latidinho de filhote
-let audioCtx = null;
-function getAudioContext() {
-  if (!audioCtx) {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (AudioContextClass) {
-      audioCtx = new AudioContextClass();
-    }
-  }
-  if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
-  return audioCtx;
-}
+﻿// Som real e natural de latido de cachorro
+const barkAudio = new Audio('assets/bark.wav');
+barkAudio.volume = 0.5;
 
 function playPuppyBark() {
   try {
-    const ctx = getAudioContext();
-    if (!ctx) return;
-
-    const now = ctx.currentTime;
-    // Latidinho duplo curto e agudo de filhotinho ('au-au!')
-    const barks = [0, 0.08];
-    barks.forEach((delay, idx) => {
-      const startTime = now + delay;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.type = 'triangle';
-      const baseFreq = idx === 0 ? 850 : 980;
-      osc.frequency.setValueAtTime(baseFreq, startTime);
-      osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.5, startTime + 0.07);
-
-      gain.gain.setValueAtTime(0.001, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.2, startTime + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.07);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start(startTime);
-      osc.stop(startTime + 0.075);
-    });
+    const sound = barkAudio.cloneNode();
+    sound.volume = 0.5;
+    sound.play().catch(() => {});
   } catch (e) {
-    // Silencia caso o navegador bloqueie audio antes de interacao
+    // Silencia caso bloqueado pelo navegador
   }
 }
 
