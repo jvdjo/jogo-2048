@@ -26,6 +26,11 @@ html, body {
 body {
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   background-color: var(--bg-color);
+  background-image: linear-gradient(rgba(247, 243, 235, 0.85), rgba(247, 243, 235, 0.85)), url('assets/background.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--text-dark);
   display: flex;
   justify-content: center;
