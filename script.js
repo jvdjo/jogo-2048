@@ -1,16 +1,16 @@
 // Lista dos Memes de Filhotes de Cachorro (Figurinhas clássicas)
 const PUPPY_MEMES = {
-  2:    { name: "Oi posso fala?",  img: "assets/dogs/filhote-1.png" },
-  4:    { name: "Num quedito...",  img: "assets/dogs/filhote-2.png" },
-  8:    { name: "Quem disse?",     img: "assets/dogs/filhote-3.png" },
-  16:   { name: "Tô de castigo",   img: "assets/dogs/filhote-4.png" },
-  32:   { name: "Mim dê papai",    img: "assets/dogs/filhote-5.png" },
-  64:   { name: "Passada!",        img: "assets/dogs/filhote-6.png" },
-  128:  { name: "Cão de Óculos",   img: "assets/dogs/filhote-7.png" },
-  256:  { name: "Penso, logo au",  img: "assets/dogs/filhote-8.png" },
-  512:  { name: "Hummm sei não",   img: "assets/dogs/filhote-9.png" },
-  1024: { name: "Caramelo Neném",  img: "assets/dogs/filhote-10.png" },
-  2048: { name: "Doge Lendário",   img: "assets/dogs/filhote-11.png" }
+  2:    { name: "Oi posso fala?",  img: "assets/dogs-reais/1.png" },
+  4:    { name: "Num quedito...",  img: "assets/dogs-reais/2.png" },
+  8:    { name: "Quem disse?",     img: "assets/dogs-reais/3.png" },
+  16:   { name: "Tô de castigo",   img: "assets/dogs-reais/4.png" },
+  32:   { name: "Mim dê papai",    img: "assets/dogs-reais/5.png" },
+  64:   { name: "Passada!",        img: "assets/dogs-reais/6.png" },
+  128:  { name: "Cão de Óculos",   img: "assets/dogs-reais/7.png" },
+  256:  { name: "Penso, logo au",  img: "assets/dogs-reais/8.png" },
+  512:  { name: "Hummm sei não",   img: "assets/dogs-reais/9.png" },
+  1024: { name: "Caramelo Neném",  img: "assets/dogs-reais/10.png" },
+  2048: { name: "Doge Lendário",   img: "assets/dogs-reais/11.png" }
 };
 
 // Estado do Jogo
