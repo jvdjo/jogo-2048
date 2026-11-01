@@ -1,38 +1,38 @@
-# 🎮 Jogo 2048 Web
+# 🐶 2048 - Dog Edition 🐾
 
-Uma versão web clássica, responsiva e moderna do famoso jogo **2048**, desenvolvida com **HTML5, CSS3 e JavaScript puro**.
+Uma versão especial e fofíssima do clássico **2048**, onde os números foram transformados em **filhotes de cachorros** que evoluem conforme você os junta!
+
+---
+
+## 🐕 A Escala de Evolução dos Filhotes
+
+| Nível / Valor | Raça |
+| :---: | :--- |
+| **2** | 🐾 Chihuahua |
+| **4** | 🐶 Pug |
+| **8** | 🐕 Spitz Alemão (Lulu da Pomerânia) |
+| **16** | 🐶 Beagle |
+| **32** | 🐾 Corgi |
+| **64** | 🐶 Bulldog Francês |
+| **128** | 🐕 Shiba Inu |
+| **256** | 🐾 Dálmata |
+| **512** | 🐺 Husky Siberiano |
+| **1024** | 🦮 Golden Retriever |
+| **2048** | 👑 Samoieda Lendário |
 
 ---
 
 ## ✨ Funcionalidades
 
-- **Mecânica Original do 2048**: deslize os blocos e junte os números idênticos para somá-los até atingir o bloco 2048 (e além!).
-- **Recorde Persistente**: sua melhor pontuação fica salva no navegador (`localStorage`).
-- **Design Responsivo & Limpo**: adapta-se perfeitamente a computadores, tablets e smartphones.
-- **Múltiplos Métodos de Entrada**:
-  - ⌨️ **Teclado**: Setas direcionais (`▲`, `▼`, `◀`, `▶`).
-  - 📱 **Touch / Swipe**: Arraste os dedos na tela em dispositivos móveis.
-  - 🕹️ **D-Pad Virtual**: Botões direcionais na tela.
-- **Telas Interativas**: Notificações animadas de vitória (com opção de continuar jogando) e de Game Over.
+- **Fotos reais de filhotes**: cada bloco exibe uma foto fofa da raça correspondente, acompanhada do seu nome e valor numérico.
+- **Guia Visual interativo**: menu expansível no próprio jogo mostrando todas as raças e sua ordem de evolução.
+- **Mecânica fluida do 2048**: animações de surgimento e fusão.
+- **Suporte Mobile & Desktop**: jogue pelas setas do teclado, deslizando o dedo (swipe) ou com os botões direcionais na tela.
+- **Recorde Automático**: pontuação persistente via `localStorage`.
 
 ---
 
-## 🚀 Como Jogar / Executar
+## 🌐 Jogar Online (GitHub Pages)
 
-### Opção 1: Direto no Navegador (Local)
-1. Baixe ou clone os arquivos.
-2. Dê um duplo clique no arquivo `index.html`.
-
-### Opção 2: GitHub Pages (Online)
-Você pode ativar o **GitHub Pages** nas configurações do repositório para jogar diretamente pelo link gerado!
-1. Vá em **Settings** > **Pages**.
-2. Em **Branch**, selecione `main` (ou `master`) e a pasta `/(root)`.
-3. Clique em **Save** e aguarde o link do jogo ficar disponível.
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-- **HTML5**
-- **CSS3** (CSS Grid, Flexbox, Animações e Variáveis)
-- **JavaScript (ES6+)**
+Você pode jogar online acessando:  
+👉 **[https://jvdjo.github.io/jogo-2048/](https://jvdjo.github.io/jogo-2048/)**

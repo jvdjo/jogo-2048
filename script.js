@@ -1,8 +1,23 @@
+// Mapeamento dos cachorrinhos por valor/nível
+const DOG_TILES = {
+  2:    { name: "Chihuahua", img: "assets/dogs/dog-1.jpg" },
+  4:    { name: "Pug", img: "assets/dogs/dog-2.jpg" },
+  8:    { name: "Spitz Alemão", img: "assets/dogs/dog-3.jpg" },
+  16:   { name: "Beagle", img: "assets/dogs/dog-4.jpg" },
+  32:   { name: "Corgi", img: "assets/dogs/dog-5.jpg" },
+  64:   { name: "Bulldog Francês", img: "assets/dogs/dog-6.jpg" },
+  128:  { name: "Shiba Inu", img: "assets/dogs/dog-7.jpg" },
+  256:  { name: "Dálmata", img: "assets/dogs/dog-8.jpg" },
+  512:  { name: "Husky Siberiano", img: "assets/dogs/dog-9.jpg" },
+  1024: { name: "Golden Retriever", img: "assets/dogs/dog-10.jpg" },
+  2048: { name: "Samoieda Lendário", img: "assets/dogs/dog-11.jpg" }
+};
+
 // Estado do Jogo
 const SIZE = 4;
 let board = [];
 let score = 0;
-let bestScore = parseInt(localStorage.getItem('2048_best_score') || '0', 10);
+let bestScore = parseInt(localStorage.getItem('2048_dog_best_score') || '0', 10);
 let hasWon = false;
 let keepPlaying = false;
 let isGameOver = false;
@@ -18,12 +33,30 @@ const retryBtn = document.getElementById('retry-btn');
 const winRestartBtn = document.getElementById('win-restart-btn');
 const keepGoingBtn = document.getElementById('keep-going-btn');
 const dPadButtons = document.querySelectorAll('.d-btn');
+const guideList = document.getElementById('guide-list');
 
 // Inicialização
 function init() {
   bestScoreDisplay.textContent = bestScore;
+  renderGuide();
   restartGame();
   setupEventListeners();
+}
+
+function renderGuide() {
+  if (!guideList) return;
+  guideList.innerHTML = '';
+  Object.keys(DOG_TILES).forEach(val => {
+    const dog = DOG_TILES[val];
+    const item = document.createElement('div');
+    item.className = 'guide-item';
+    item.innerHTML = `
+      <img src="${dog.img}" alt="${dog.name}" />
+      <span class="guide-num">${val}</span>
+      <span class="guide-name">${dog.name}</span>
+    `;
+    guideList.appendChild(item);
+  });
 }
 
 function restartGame() {
@@ -48,7 +81,7 @@ function updateScore(pointsAdded) {
   if (score > bestScore) {
     bestScore = score;
     bestScoreDisplay.textContent = bestScore;
-    localStorage.setItem('2048_best_score', bestScore);
+    localStorage.setItem('2048_dog_best_score', bestScore);
   }
 }
 
@@ -82,8 +115,8 @@ function renderBoard(newTileCoord = null, mergedCoords = []) {
         const tile = document.createElement('div');
         tile.classList.add('tile');
         
-        const colorClass = val <= 2048 ? `tile-${val}` : 'tile-super';
-        tile.classList.add(colorClass);
+        const dog = DOG_TILES[val] || { name: `Mega Dog ${val}`, img: DOG_TILES[2048].img };
+        tile.style.backgroundImage = `url("${dog.img}")`;
 
         if (newTileCoord && newTileCoord.r === r && newTileCoord.c === c) {
           tile.classList.add('tile-new');
@@ -91,11 +124,13 @@ function renderBoard(newTileCoord = null, mergedCoords = []) {
           tile.classList.add('tile-merged');
         }
 
-        tile.textContent = val;
+        // Nome da raça e valor numérico
+        tile.innerHTML = `
+          <span class="tile-breed">${dog.name}</span>
+          <span class="tile-badge">${val}</span>
+        `;
         
-        // Posição percentual considerando o espaçamento (gap 12px em grid de 4)
-        // Largura/altura: calc((100% - 36px) / 4)
-        // Margem deslocamento: index * (tamanho + 12px)
+        // Posição percentual considerando o gap de 12px
         tile.style.top = `calc(${r} * (25% + 3px))`;
         tile.style.left = `calc(${c} * (25% + 3px))`;
 
@@ -107,7 +142,6 @@ function renderBoard(newTileCoord = null, mergedCoords = []) {
 
 // Lógica de Movimento
 function slideRow(row) {
-  // Filtra zeros
   let arr = row.filter(val => val !== 0);
   let points = 0;
   let mergedIndices = [];
@@ -129,7 +163,6 @@ function slideRow(row) {
 }
 
 function rotateBoard(matrix) {
-  // Rotação 90 graus no sentido horário
   return matrix[0].map((_, index) => matrix.map(row => row[index]).reverse());
 }
 
@@ -165,7 +198,6 @@ function move(direction) {
     currentBoard[r] = newRow;
   }
 
-  // Desfaz a rotação para voltar à orientação original
   const reverseRotations = (4 - rotations) % 4;
   for (let i = 0; i < reverseRotations; i++) {
     currentBoard = rotateBoard(currentBoard);
@@ -175,7 +207,6 @@ function move(direction) {
     board = currentBoard;
     updateScore(pointsGained);
 
-    // Converte as coordenadas mescladas de volta
     const finalMerged = [];
     for (const pos of mergedInRotated) {
       let r = pos.r;
@@ -200,7 +231,6 @@ function move(direction) {
 }
 
 function checkGameStatus() {
-  // Checa vitória (se atingiu 2048)
   if (!hasWon && !keepPlaying) {
     for (let r = 0; r < SIZE; r++) {
       for (let c = 0; c < SIZE; c++) {
@@ -213,7 +243,6 @@ function checkGameStatus() {
     }
   }
 
-  // Checa se ainda há movimentos possíveis
   if (!canMove()) {
     isGameOver = true;
     gameOverOverlay.classList.remove('hidden');
@@ -231,9 +260,7 @@ function canMove() {
   return false;
 }
 
-// Configuração de Eventos
 function setupEventListeners() {
-  // Teclado
   window.addEventListener('keydown', (e) => {
     if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
       e.preventDefault();
@@ -241,7 +268,6 @@ function setupEventListeners() {
     }
   });
 
-  // Touch / Gestos de deslize (Swipe)
   let touchStartX = 0;
   let touchStartY = 0;
   const gameBoard = document.getElementById('game-board');
@@ -271,7 +297,6 @@ function setupEventListeners() {
     }
   }, { passive: true });
 
-  // Botões de Ação
   restartBtn.addEventListener('click', restartGame);
   retryBtn.addEventListener('click', restartGame);
   winRestartBtn.addEventListener('click', restartGame);
@@ -281,7 +306,6 @@ function setupEventListeners() {
     winOverlay.classList.add('hidden');
   });
 
-  // Botões Virtuais D-Pad
   dPadButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const dir = btn.dataset.dir;
@@ -290,5 +314,4 @@ function setupEventListeners() {
   });
 }
 
-// Inicia ao carregar a página
 document.addEventListener('DOMContentLoaded', init);

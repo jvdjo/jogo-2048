@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Jogo 2048</title>
+  <title>2048 - Dog Edition 🐶</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <header class="header">
       <div class="title-container">
-        <h1>2048</h1>
-        <p class="subtitle">Junte os blocos para alcançar o número <strong>2048</strong>!</p>
+        <h1>2048 🐾</h1>
+        <p class="subtitle">Junte os filhotinhos até chegar ao <strong>Cachorrão Lendário (2048)</strong>!</p>
       </div>
       <div class="scores-container">
         <div class="score-box">
@@ -26,30 +26,38 @@
     </header>
 
     <div class="controls-bar">
-      <button id="restart-btn" class="btn">Novo Jogo</button>
+      <button id="restart-btn" class="btn">Novo Jogo 🐕</button>
       <div class="instructions">
-        <span>Use as <strong>setas do teclado</strong> ou deslize (<strong>swipe</strong>) na tela</span>
+        <span>Use as <strong>setas do teclado</strong> ou deslize (<strong>swipe</strong>)</span>
       </div>
     </div>
 
+    <!-- Guia visual das raças/níveis -->
+    <details class="dog-guide">
+      <summary>📖 Ver evolução dos cachorrinhos</summary>
+      <div class="guide-list" id="guide-list"></div>
+    </details>
+
     <div class="game-wrapper">
       <div id="game-board" class="grid-container">
-        <!-- 16 células de fundo geradas estaticamente -->
+        <!-- 16 células de fundo -->
         <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
         <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
         <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
         <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
 
-        <!-- Peças dinâmicas -->
+        <!-- Peças dinâmicas com fotos de cachorros -->
         <div id="tile-container" class="tile-container"></div>
 
         <!-- Overlays de Fim de Jogo / Vitória -->
         <div id="game-over-overlay" class="overlay hidden">
-          <p class="overlay-msg">Fim de Jogo!</p>
+          <p class="overlay-msg">Fim de Jogo! 🐶💤</p>
+          <p class="overlay-sub">Não há mais espaço para os filhotes!</p>
           <button id="retry-btn" class="btn">Tentar Novamente</button>
         </div>
         <div id="win-overlay" class="overlay hidden">
-          <p class="overlay-msg">Você Venceu!</p>
+          <p class="overlay-msg">Parabéns! 🏆🐶</p>
+          <p class="overlay-sub">Você desbloqueou o Cachorro Lendário!</p>
           <div class="overlay-actions">
             <button id="keep-going-btn" class="btn">Continuar Jogando</button>
             <button id="win-restart-btn" class="btn">Reiniciar</button>
@@ -58,7 +66,7 @@
       </div>
     </div>
 
-    <!-- Controles móveis virtuais para conveniência extra além do swipe -->
+    <!-- Controles móveis virtuais -->
     <div class="mobile-controls">
       <div class="d-pad">
         <button class="d-btn up" data-dir="ArrowUp" aria-label="Cima">▲</button>
@@ -71,7 +79,7 @@
     </div>
 
     <footer class="footer">
-      <p>Desenvolvido com HTML, CSS e JavaScript puro.</p>
+      <p>Desenvolvido com carinho para quem ama cachorrinhos! 🐕❤️</p>
     </footer>
   </div>
 
