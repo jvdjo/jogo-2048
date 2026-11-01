@@ -1,23 +1,23 @@
-// Mapeamento dos cachorrinhos por valor/nível
-const DOG_TILES = {
-  2:    { name: "Chihuahua", img: "assets/dogs/dog-1.jpg" },
-  4:    { name: "Pug", img: "assets/dogs/dog-2.jpg" },
-  8:    { name: "Spitz Alemão", img: "assets/dogs/dog-3.jpg" },
-  16:   { name: "Beagle", img: "assets/dogs/dog-4.jpg" },
-  32:   { name: "Corgi", img: "assets/dogs/dog-5.jpg" },
-  64:   { name: "Bulldog Francês", img: "assets/dogs/dog-6.jpg" },
-  128:  { name: "Shiba Inu", img: "assets/dogs/dog-7.jpg" },
-  256:  { name: "Dálmata", img: "assets/dogs/dog-8.jpg" },
-  512:  { name: "Husky Siberiano", img: "assets/dogs/dog-9.jpg" },
-  1024: { name: "Golden Retriever", img: "assets/dogs/dog-10.jpg" },
-  2048: { name: "Samoieda Lendário", img: "assets/dogs/dog-11.jpg" }
+// Lista completa dos Memes de Cachorro
+const DOG_MEMES = {
+  2:    { name: "Oi posso fala?", img: "assets/dogs/meme-1.png" },
+  4:    { name: "Cheems Triste", img: "assets/dogs/meme-2.png" },
+  8:    { name: "Dog Julgador", img: "assets/dogs/meme-3.png" },
+  16:   { name: "Caramelo Chocado", img: "assets/dogs/meme-4.png" },
+  32:   { name: "Sorriso Forçado", img: "assets/dogs/meme-5.png" },
+  64:   { name: "Walter", img: "assets/dogs/meme-6.png" },
+  128:  { name: "Cão de Óculos", img: "assets/dogs/meme-7.png" },
+  256:  { name: "Dog Reflexivo", img: "assets/dogs/meme-8.png" },
+  512:  { name: "Desconfiado", img: "assets/dogs/meme-9.png" },
+  1024: { name: "Vira-lata Caramelo", img: "assets/dogs/meme-10.png" },
+  2048: { name: "Doge Lendário", img: "assets/dogs/meme-11.png" }
 };
 
 // Estado do Jogo
 const SIZE = 4;
 let board = [];
 let score = 0;
-let bestScore = parseInt(localStorage.getItem('2048_dog_best_score') || '0', 10);
+let bestScore = parseInt(localStorage.getItem('2048_dogmeme_best') || '0', 10);
 let hasWon = false;
 let keepPlaying = false;
 let isGameOver = false;
@@ -46,14 +46,14 @@ function init() {
 function renderGuide() {
   if (!guideList) return;
   guideList.innerHTML = '';
-  Object.keys(DOG_TILES).forEach(val => {
-    const dog = DOG_TILES[val];
+  Object.keys(DOG_MEMES).forEach(val => {
+    const meme = DOG_MEMES[val];
     const item = document.createElement('div');
     item.className = 'guide-item';
     item.innerHTML = `
-      <img src="${dog.img}" alt="${dog.name}" />
+      <img src="${meme.img}" alt="${meme.name}" />
       <span class="guide-num">${val}</span>
-      <span class="guide-name">${dog.name}</span>
+      <span class="guide-name">${meme.name}</span>
     `;
     guideList.appendChild(item);
   });
@@ -81,7 +81,7 @@ function updateScore(pointsAdded) {
   if (score > bestScore) {
     bestScore = score;
     bestScoreDisplay.textContent = bestScore;
-    localStorage.setItem('2048_dog_best_score', bestScore);
+    localStorage.setItem('2048_dogmeme_best', bestScore);
   }
 }
 
@@ -113,10 +113,12 @@ function renderBoard(newTileCoord = null, mergedCoords = []) {
       const val = board[r][c];
       if (val > 0) {
         const tile = document.createElement('div');
-        tile.classList.add('tile');
-        
-        const dog = DOG_TILES[val] || { name: `Mega Dog ${val}`, img: DOG_TILES[2048].img };
-        tile.style.backgroundImage = `url("${dog.img}")`;
+        tile.className = 'tile';
+        if (val >= 2048) {
+          tile.classList.add('tile-2048');
+        }
+
+        const meme = DOG_MEMES[val] || { name: `Meme ${val}`, img: DOG_MEMES[2048].img };
 
         if (newTileCoord && newTileCoord.r === r && newTileCoord.c === c) {
           tile.classList.add('tile-new');
@@ -124,10 +126,10 @@ function renderBoard(newTileCoord = null, mergedCoords = []) {
           tile.classList.add('tile-merged');
         }
 
-        // Nome da raça e valor numérico
         tile.innerHTML = `
-          <span class="tile-breed">${dog.name}</span>
+          <img class="tile-img" src="${meme.img}" alt="${meme.name}" />
           <span class="tile-badge">${val}</span>
+          <span class="tile-name">${meme.name}</span>
         `;
         
         // Posição percentual considerando o gap de 12px

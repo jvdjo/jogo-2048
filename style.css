@@ -1,12 +1,12 @@
 :root {
   --bg-color: #f7f3eb;
-  --grid-bg: #b09f8c;
-  --cell-bg: rgba(245, 239, 230, 0.5);
-  --text-dark: #635343;
+  --grid-bg: #b8a795;
+  --cell-bg: rgba(245, 239, 230, 0.45);
+  --text-dark: #5c4c3e;
   --text-light: #ffffff;
   --primary-btn: #8c7355;
   --primary-btn-hover: #9c8365;
-  --badge-bg: rgba(0, 0, 0, 0.65);
+  --badge-bg: rgba(0, 0, 0, 0.7);
 }
 
 * {
@@ -45,7 +45,7 @@ body {
 }
 
 .title-container h1 {
-  font-size: 3.2rem;
+  font-size: 3rem;
   font-weight: 800;
   line-height: 1;
   color: var(--text-dark);
@@ -123,9 +123,9 @@ body {
   transform: scale(0.97);
 }
 
-/* Guia de Raças */
+/* Guia de Memes */
 .dog-guide {
-  background: #ede6dc;
+  background: #eae2d6;
   border-radius: 8px;
   padding: 8px 12px;
   font-size: 0.85rem;
@@ -139,7 +139,7 @@ body {
 
 .guide-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
   gap: 8px;
   margin-top: 10px;
 }
@@ -149,17 +149,18 @@ body {
   flex-direction: column;
   align-items: center;
   background: #fff;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 6px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   text-align: center;
 }
 
 .guide-item img {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: #faf8ef;
   margin-bottom: 4px;
 }
 
@@ -175,7 +176,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 80px;
+  max-width: 85px;
 }
 
 /* Tabuleiro */
@@ -204,7 +205,7 @@ body {
   border-radius: 8px;
 }
 
-/* Peças com Cachorros */
+/* Peças com Memes */
 .tile-container {
   position: absolute;
   top: 12px;
@@ -221,44 +222,62 @@ body {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   transition: transform 100ms ease-in-out;
   box-shadow: 0 3px 6px rgba(0,0,0,0.18);
   overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  padding: 4px;
+  background-color: #fff;
+}
+
+.tile-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: #faf6f0;
+  z-index: 1;
 }
 
 .tile-badge {
+  position: relative;
+  z-index: 2;
+  align-self: flex-end;
   background: var(--badge-bg);
   color: #fff;
-  font-size: 0.75rem;
-  font-weight: bold;
-  padding: 2px 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 1px 5px;
   border-radius: 4px;
-  margin-bottom: 4px;
   backdrop-filter: blur(2px);
   text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }
 
-.tile-breed {
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  right: 4px;
-  font-size: 0.65rem;
-  font-weight: 700;
+.tile-name {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  font-size: 0.62rem;
+  font-weight: 800;
   color: #fff;
   text-shadow: 0 1px 3px rgba(0,0,0,0.9);
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.55);
   border-radius: 4px;
-  padding: 1px 3px;
+  padding: 1px 2px;
+}
+
+/* Cores de borda/brilho por nível */
+.tile-2048 {
+  border-color: #ffd700;
+  box-shadow: 0 0 18px 3px rgba(255, 215, 0, 0.85);
 }
 
 /* Animações */
@@ -289,8 +308,8 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 12px;
-  background: rgba(247, 243, 235, 0.9);
-  backdrop-filter: blur(3px);
+  background: rgba(247, 243, 235, 0.92);
+  backdrop-filter: blur(4px);
   display: flex;
   flex-direction: column;
   justify-content: center;
