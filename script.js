@@ -100,8 +100,7 @@ function renderGuide() {
     item.innerHTML = `
       <img src="${meme.img}" alt="${meme.name}" />
       <span class="guide-num">${val}</span>
-      <span class="guide-name">${meme.name}</span>
-    `;
+      `;
     guideList.appendChild(item);
   });
 }
@@ -178,10 +177,7 @@ function renderBoard(newTileCoord = null, mergedCoords = []) {
           <div class="tile-header">
             <span class="tile-badge">${val}</span>
           </div>
-          <div class="tile-caption">
-            <span>${meme.name}</span>
-          </div>
-        `;
+          `;
         
         // Posição percentual considerando o gap de 12px
         tile.style.top = `calc(${r} * (25% + (var(--grid-gap) / 4)))`;
